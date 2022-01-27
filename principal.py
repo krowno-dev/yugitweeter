@@ -42,7 +42,7 @@ def textolargo(tocho):
         twitter.update_status(status=tocho, in_reply_to_status_id=twID)
 
 
-f = open('cardinfo.php')
+f = open('files/cardinfo.php')
 yugi = json.load(f)
 
 #print(f.read())
