@@ -41,11 +41,16 @@ def textolargo(tocho):
         twID = tweet[0]["id"]
         twitter.update_status(status=tocho, in_reply_to_status_id=twID)
 
+response = requests.get("https://db.ygoprodeck.com/api/v7/cardinfo.php")
+imagen = open("cardinfo.php", "wb")
+imagen.write(response.content)
+imagen.close()
+        
 
-f = open('files/cardinfo.php')
+f = open('cardinfo.php')
 yugi = json.load(f)
+f.close()
 
-#print(f.read())
 listaIDS = []
 for elemento in yugi["data"]:
     #print (elemento["id"])
