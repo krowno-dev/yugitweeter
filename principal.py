@@ -42,9 +42,9 @@ def textolargo(tocho):
         twitter.update_status(status=tocho, in_reply_to_status_id=twID)
 
 response = requests.get("https://db.ygoprodeck.com/api/v7/cardinfo.php")
-imagen = open("cardinfo.php", "wb")
-imagen.write(response.content)
-imagen.close()
+datosBD = open("cardinfo.php", "wb")
+datosBD.write(response.content)
+datosBD.close()
         
 
 f = open('cardinfo.php')
