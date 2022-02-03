@@ -9,6 +9,12 @@ from auth import (
     access_token,
     access_token_secret
 )
+from auth2 import (
+    consumer_key2,
+    consumer_secret2,
+    access_token2,
+    access_token_secret2
+)
 from twython import Twython
 
 
@@ -18,6 +24,13 @@ twitter = Twython(
     consumer_secret,
     access_token,
     access_token_secret
+)
+
+twitter_art = Twython(
+    consumer_key2,
+    consumer_secret2,
+    access_token2,
+    access_token_secret2
 )
 
 def textolargo(tocho):
@@ -124,6 +137,21 @@ while bucle == True:
 
                 twitter.update_status(status=respuesta, in_reply_to_status_id=twID)
 
+
+
+                #ARTES DE CARTAS
+                pagina = "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/" + str(idRand) + ".jpg"
+                response = requests.get(pagina)
+                imagen = open("art.jpg","wb")
+                imagen.write(response.content)
+                imagen.close()
+
+                photo = open('art.jpg', 'rb')
+                texto = ("%s  //  %s"%(nombre,tipo))
+
+                response = twitter_art.upload_media(media=photo)
+                twitter_art.update_status(status=texto,media_ids=[response["media_id"]])
+                photo.close()
 
                 #registro = nombre + " subido a las " + current_time + "\n"
                 registro = current_time + "  -  "+ nombre + "\n"
